@@ -1,4 +1,6 @@
-/* Reset dan Dasar */
+/* =================================
+   Reset dan Gaya Dasar
+   ================================= */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -6,251 +8,380 @@
 }
 
 body {
-    font-family: sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Font lebih modern */
     line-height: 1.6;
     color: #333;
-    background-color: #f4f4f4;
+    background-color: #f8f9fa; /* Latar belakang sedikit abu-abu */
     padding: 20px;
 }
 
 #cold-chain-app {
-    max-width: 1200px; /* Lebar maksimum */
-    margin: 20px auto;
-    background-color: #fff;
-    padding: 30px;
+    max-width: 1200px; /* Lebar maksimum konten */
+    margin: 20px auto; /* Pusatkan di halaman */
+    background-color: #ffffff; /* Kontainer utama putih */
+    padding: 30px 40px; /* Padding lebih banyak */
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Shadow lebih lembut */
+    overflow: hidden; /* Cegah elemen keluar batas */
 }
 
 h1 {
     text-align: center;
-    color: #0056b3;
-    margin-bottom: 30px;
+    color: #0d6efd; /* Biru utama Bootstrap */
+    margin-bottom: 35px;
+    font-weight: 600;
 }
 
-/* Kontrol Layout */
+/* =================================
+   Kontrol Layout (Tombol)
+   ================================= */
 .controls {
     text-align: center;
-    margin-bottom: 30px;
-    padding: 15px;
-    background-color: #e9ecef;
-    border-radius: 5px;
+    margin-bottom: 40px;
+    padding: 20px;
+    background-color: #e9ecef; /* Background abu-abu terang */
+    border-radius: 6px;
 }
 
 .controls p {
-    margin-bottom: 10px;
-    font-weight: bold;
+    margin-bottom: 12px;
+    font-weight: 500; /* Sedikit tebal */
+    color: #495057;
 }
 
 .controls button {
-    padding: 10px 15px;
-    margin: 0 5px;
+    padding: 10px 20px; /* Padding lebih besar */
+    margin: 0 8px;
     cursor: pointer;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #f8f9fa;
-    transition: background-color 0.2s ease;
+    border: 1px solid #ced4da; /* Border abu-abu */
+    border-radius: 5px;
+    background-color: #f8f9fa; /* Background terang */
+    color: #495057; /* Warna teks */
+    font-size: 0.95em;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
 .controls button:hover {
-    background-color: #e2e6ea;
+    background-color: #e2e6ea; /* Efek hover */
+    border-color: #adb5bd;
 }
 
 .controls button.active {
-    background-color: #007bff;
+    background-color: #0d6efd; /* Warna aktif (biru) */
     color: white;
-    border-color: #0056b3;
+    border-color: #0a58ca; /* Border lebih gelap saat aktif */
+    font-weight: 500;
 }
 
-/* Kontainer Visualisasi */
+/* =================================
+   Kontainer Visualisasi Utama
+   ================================= */
 #cold-chain-visualizer {
-    display: flex; /* Defaultnya akan diatur oleh JS, tapi flex adalah basisnya */
-    align-items: flex-start; /* Rata atas untuk tinggi berbeda */
-    overflow-x: auto; /* Scroll jika horizontal terlalu lebar */
-    padding-bottom: 20px; /* Ruang untuk scrollbar jika muncul */
+    display: flex; /* Basis layout flexbox */
+    align-items: flex-start; /* Rata atas untuk item berbeda tinggi */
+    padding-bottom: 20px; /* Ruang untuk scrollbar jika horizontal */
+    margin-bottom: 20px; /* Jarak sebelum area detail */
+    position: relative; /* Untuk positioning elemen absolut jika perlu */
 }
 
-/* Style untuk Setiap Tahap */
+/* =================================
+   Style Setiap Tahap (Step)
+   ================================= */
 .step {
     background-color: #ffffff;
-    border: 1px solid #ddd;
+    border: 1px solid #e0e0e0; /* Border lebih halus */
     border-radius: 6px;
     padding: 15px;
-    margin: 10px; /* Jarak antar step */
+    margin: 10px;
     text-align: center;
-    cursor: pointer;
+    cursor: default; /* Cursor default, klik di header */
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    min-width: 150px; /* Lebar minimum step */
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-}
-
-.step:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    position: relative; /* Untuk potensi elemen absolut di dalamnya */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
 .step-header {
     display: flex;
-    flex-direction: column; /* Icon di atas teks */
+    flex-direction: column;
     align-items: center;
     margin-bottom: 10px;
+    padding: 10px 5px; /* Padding di dalam header */
+    border-radius: 5px; /* Bulatkan sudut header juga */
+    transition: background-color 0.2s ease;
+    cursor: pointer; /* Hanya header yang bisa diklik */
 }
 
+.step-header:hover {
+    background-color: #f1f3f5; /* Efek hover pada header */
+}
+
+/* Style Ikon Font Awesome */
 .step-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%; /* Membuat icon bulat */
-    margin-bottom: 8px;
-    object-fit: cover; /* Jaga rasio aspek icon */
+    margin-bottom: 12px;
+    color: #0d6efd; /* Warna ikon default */
+    /* Ukuran diatur oleh fa-2x di HTML */
+    line-height: 1; /* Pastikan tidak menambah tinggi berlebih */
 }
+/* Warna Ikon Berbeda (Contoh) - Opsional */
+#step-dermaga .step-icon { color: #0d6efd; }
+#step-transport1 .step-icon { color: #198754; } /* Hijau */
+#step-cs .step-icon { color: #ffc107; } /* Kuning */
+#step-processing .step-icon { color: #fd7e14; } /* Oranye */
+#step-transport2 .step-icon { color: #0dcaf0; } /* Cyan */
+#step-customer .step-icon { color: #6f42c1; } /* Ungu */
 
+/* Judul Step */
 .step h3 {
     font-size: 1em;
-    color: #333;
-    margin-bottom: 0; /* Hapus margin bawah default */
+    color: #343a40; /* Warna teks lebih gelap */
+    margin-bottom: 0;
+    font-weight: 600;
 }
 
-/* Detail Best Practice (Hidden by Default) */
-.details {
-    display: none; /* Sembunyikan secara default */
-    text-align: left;
-    margin-top: 15px;
-    padding: 15px;
-    background-color: #f9f9f9;
-    border-top: 1px dashed #ccc;
-    border-radius: 0 0 5px 5px; /* Bulat di bawah */
+/* Highlight Step Aktif */
+.step.active-step .step-header {
+    background-color: #cfe2ff; /* Biru sangat muda */
+    box-shadow: inset 0 0 4px rgba(13, 110, 253, 0.2); /* Sedikit inner shadow */
+}
+/* Alternatif: Border tebal */
+/* .step.active-step {
+    border: 2px solid #0d6efd;
+    box-shadow: 0 3px 8px rgba(13, 110, 253, 0.2);
+} */
+
+/* Sembunyikan Detail Asli di Dalam Step */
+.step .details {
+    display: none !important; /* Harus selalu tersembunyi */
 }
 
-.details h4 {
-    margin-top: 10px;
-    margin-bottom: 5px;
-    color: #0056b3;
-}
-.details h4:first-child {
-    margin-top: 0;
-}
-
-.details ul {
-    list-style-position: inside;
-    padding-left: 0;
-}
-.details ul li {
-    margin-bottom: 5px;
-    font-size: 0.9em;
-}
-
-.details p {
-    font-size: 0.9em;
-    margin-bottom: 10px;
-}
-
-/* Konektor antar Step */
+/* =================================
+   Konektor Antar Step
+   ================================= */
 .connector {
-    align-self: center; /* Posisikan di tengah vertikal antar step */
-    font-size: 1.5em;
+    align-self: center; /* Tengah vertikal */
+    font-size: 1.8em; /* Ukuran panah */
     font-weight: bold;
-    color: #aaa;
+    color: #adb5bd; /* Warna panah abu-abu */
+    flex-shrink: 0; /* Jangan biarkan konektor mengecil */
 }
+
+/* =================================
+   Layout Spesifik
+   ================================= */
 
 /* -- Layout Horizontal -- */
 #cold-chain-visualizer.layout-horizontal {
     flex-direction: row;
+    justify-content: space-between; /* Distribusikan step */
+    overflow-x: auto; /* Aktifkan scroll horizontal jika perlu */
+    overflow-y: hidden;
 }
 
 #cold-chain-visualizer.layout-horizontal .step {
-    flex: 1; /* Agar semua step coba mengisi ruang, bisa disesuaikan */
-     /* max-width: 200px; */ /* Batasi lebar max jika perlu */
+    flex: 0 1 160px; /* Jangan grow, bisa shrink, basis 160px */
+    min-width: 140px; /* Lebar minimum */
+    margin: 10px 5px; /* Margin lebih kecil horizontal */
 }
 
 #cold-chain-visualizer.layout-horizontal .connector {
-     margin: 0 15px; /* Jarak horizontal konektor */
-     /* Panah Kanan (atau bisa pakai gambar/SVG) */
-     content: "➔"; /* Ini mungkin tidak tampil, set di CSS */
-     display: inline-block; /* Agar bisa diberi margin */
+    margin: 0 15px; /* Jarak kiri-kanan konektor */
+    display: inline-block; /* Agar margin berfungsi */
 }
-/* Cara lebih baik untuk panah kanan di CSS */
 #cold-chain-visualizer.layout-horizontal .connector::before {
-    content: "➔";
+    content: "➔"; /* Panah kanan */
 }
-
 
 /* -- Layout Vertikal -- */
 #cold-chain-visualizer.layout-vertical {
-    flex-direction: column;
+    flex-direction: column; /* Arah kolom */
     align-items: center; /* Pusatkan step secara horizontal */
     overflow-x: hidden; /* Tidak perlu scroll horizontal */
 }
 
 #cold-chain-visualizer.layout-vertical .step {
-    width: 80%; /* Lebar step di mode vertikal */
-    max-width: 500px; /* Batas lebar maksimum */
-    margin: 15px 0; /* Jarak atas bawah */
-    flex: none; /* Hapus flex grow/shrink */
+    width: 85%; /* Lebar step */
+    max-width: 550px; /* Batas lebar */
+    margin: 15px 0; /* Jarak atas-bawah */
+    flex: none; /* Hapus properti flex item */
 }
 
 #cold-chain-visualizer.layout-vertical .connector {
-    margin: 5px 0; /* Jarak vertikal konektor */
+    margin: 8px 0; /* Jarak vertikal konektor */
     transform: rotate(90deg); /* Putar panah */
-    display: block; /* Agar bisa diberi margin atas/bawah */
+    display: block; /* Agar margin berfungsi */
 }
-/* Cara lebih baik untuk panah bawah di CSS */
 #cold-chain-visualizer.layout-vertical .connector::before {
-    content: "➔"; /* Tetap pakai panah kanan, tapi diputar CSS */
+    content: "➔"; /* Tetap pakai panah kanan, diputar oleh transform */
 }
-/* Sembunyikan konektor terakhir */
+
+/* Sembunyikan konektor setelah step terakhir */
 #cold-chain-visualizer .step:last-child + .connector {
     display: none;
 }
 
 
-/* Catatan di Bawah */
-.note {
-    text-align: center;
-    margin-top: 20px;
+/* =================================
+   Area Penampil Detail
+   ================================= */
+#details-display-area {
+    margin-top: 40px; /* Jarak dari visualizer */
+    padding: 30px; /* Padding lebih banyak */
+    background-color: #f8f9fa; /* Warna latar beda tipis */
+    border: 1px solid #dee2e6; /* Border abu-abu */
+    border-radius: 8px;
+    display: none; /* Sembunyi secara default */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Transisi halus */
+    opacity: 0; /* Mulai transparan */
+    transform: translateY(10px); /* Mulai sedikit ke bawah */
+}
+
+#details-display-area.visible {
+    display: block; /* Tampilkan saat ada konten */
+    opacity: 1; /* Muncul penuh */
+    transform: translateY(0); /* Kembali ke posisi normal */
+}
+
+#details-display-area .placeholder-text {
+    color: #6c757d; /* Warna teks placeholder */
     font-style: italic;
-    color: #666;
-    font-size: 0.9em;
+    text-align: center;
+    padding: 20px 0; /* Padding untuk placeholder */
 }
 
-/* Responsiveness Sederhana */
+/* Styling Konten Dinamis di Dalam Area Detail */
+#details-display-area .dynamic-content {
+    animation: fadeIn 0.5s ease; /* Animasi saat konten muncul */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Judul Step (Jika Ditampilkan di Area Detail) */
+/* #details-display-area h3 {
+    margin-bottom: 20px;
+    color: #0d6efd;
+    text-align: center;
+    font-weight: 600;
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 10px;
+} */
+
+#details-display-area h4 {
+    margin-top: 20px; /* Jarak antar bagian detail */
+    margin-bottom: 10px;
+    color: #212529; /* Warna judul bagian (lebih gelap) */
+    font-weight: 600;
+    border-bottom: 1px solid #e9ecef; /* Garis bawah halus */
+    padding-bottom: 6px;
+    font-size: 1.1em;
+}
+#details-display-area h4:first-of-type {
+    margin-top: 0; /* Hapus margin atas untuk H4 pertama */
+}
+
+#details-display-area ul {
+    list-style-type: none; /* Hapus bullet default */
+    padding-left: 5px;
+    margin-bottom: 15px;
+}
+#details-display-area ul li {
+    margin-bottom: 8px;
+    font-size: 0.95em;
+    line-height: 1.5;
+    position: relative; /* Untuk custom bullet */
+    padding-left: 20px; /* Ruang untuk custom bullet */
+}
+/* Custom Bullet (Contoh: ceklis) */
+#details-display-area ul li::before {
+    content: "✓"; /* Atau pakai ikon FA: content: "\f00c"; font-family: "Font Awesome 6 Free"; font-weight: 900; */
+    color: #198754; /* Warna hijau */
+    position: absolute;
+    left: 0;
+    top: 1px; /* Sesuaikan posisi vertikal */
+    font-weight: bold;
+}
+
+#details-display-area p {
+    font-size: 0.95em;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: #495057; /* Warna teks paragraf */
+}
+/* Style khusus untuk paragraf Risiko */
+#details-display-area h4 + p { /* Paragraf tepat setelah H4 Risiko */
+    /* background-color: #fff3cd; */ /* Latar kuning muda */
+    /* border-left: 3px solid #ffc107; */ /* Garis kiri kuning */
+    /* padding: 10px; */
+    /* border-radius: 4px; */
+    /* color: #664d03; */ /* Warna teks gelap */
+}
+
+
+/* =================================
+   Responsiveness
+   ================================= */
+
+/* Layar Sedang (Tablet) */
+@media (max-width: 992px) {
+    #cold-chain-app {
+        padding: 25px 30px;
+    }
+    #cold-chain-visualizer.layout-horizontal {
+        /* Pertimbangkan untuk wrap atau tetap scroll */
+        /* flex-wrap: wrap; */
+        /* justify-content: center; */
+    }
+}
+
+/* Layar Kecil (Tablet Kecil / HP Besar) */
 @media (max-width: 768px) {
-     #cold-chain-visualizer {
-        /* Bisa dipaksa jadi vertikal di layar kecil jika diinginkan */
-        /* flex-direction: column; */
-        /* align-items: center; */
+    body { padding: 10px; }
+    #cold-chain-app { padding: 20px; }
+    h1 { font-size: 1.6em; margin-bottom: 25px; }
+    .controls { padding: 15px; margin-bottom: 30px;}
+    .controls button { padding: 8px 15px; font-size: 0.9em;}
+
+    #cold-chain-visualizer.layout-horizontal {
+        flex-wrap: wrap; /* Biarkan step pindah baris */
+        justify-content: center; /* Pusatkan step yang wrap */
+        overflow-x: hidden; /* Tidak perlu scroll lagi */
+        padding-bottom: 0;
     }
-     #cold-chain-visualizer.layout-horizontal {
-         /* Biarkan default flex wrap bekerja atau atur ulang */
-         flex-wrap: wrap; /* Biarkan step pindah baris jika tidak muat */
-         justify-content: center;
+    #cold-chain-visualizer.layout-horizontal .step {
+        flex-basis: calc(50% - 20px); /* Coba 2 kolom */
+        min-width: 130px;
+        margin: 10px;
     }
-     #cold-chain-visualizer.layout-horizontal .step {
-         flex-basis: 45%; /* Coba 2 kolom di layar sedang */
-         min-width: 150px;
+    #cold-chain-visualizer.layout-horizontal .connector {
+        display: none; /* Sembunyikan konektor saat wrap */
     }
-     #cold-chain-visualizer.layout-vertical .step {
-        width: 95%; /* Lebih lebar di layar kecil */
+
+    #cold-chain-visualizer.layout-vertical .step {
+        width: 90%; /* Lebih lebar di layar kecil */
     }
-    .controls button {
-        font-size: 0.9em;
-        padding: 8px 10px;
+
+    #details-display-area {
+        padding: 20px;
+        margin-top: 30px;
     }
-    h1 {
-        font-size: 1.5em;
-    }
+    #details-display-area h4 { font-size: 1em; }
+    #details-display-area ul li, #details-display-area p { font-size: 0.9em; }
 }
 
+/* Layar Sangat Kecil (HP) */
 @media (max-width: 480px) {
+    #cold-chain-app { padding: 15px; }
+    h1 { font-size: 1.4em; }
+    .controls { display: flex; flex-direction: column; align-items: stretch; }
+    .controls button { width: 100%; margin: 5px 0; }
+
     #cold-chain-visualizer.layout-horizontal .step {
-         flex-basis: 90%; /* 1 kolom di layar sangat kecil */
+        flex-basis: calc(100% - 20px); /* Paksa 1 kolom */
     }
-     .controls {
-         display: flex;
-         flex-direction: column;
-         align-items: center;
-     }
-     .controls button {
-         width: 80%;
-         margin: 5px 0;
-     }
+    #cold-chain-visualizer.layout-vertical .step {
+        width: 95%; /* Hampir penuh */
+    }
+     #details-display-area { padding: 15px; }
 }
