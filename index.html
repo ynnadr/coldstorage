@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualisasi Best Practice Cold Chain Perikanan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="cold-chain-app">
+        <h1>Visualisasi Best Practice Cold Chain Perikanan</h1>
+
+        <div class="controls">
+            <p>Pilih Orientasi Tampilan:</p>
+            <button id="btn-horizontal" class="active">Horizontal (Kiri ke Kanan)</button>
+            <button id="btn-vertical">Vertikal (Atas ke Bawah)</button>
+        </div>
+
+        <!-- Kontainer Utama untuk Visualisasi -->
+        <div id="cold-chain-visualizer" class="layout-horizontal">
+
+            <!-- Tahap 1: Dermaga -->
+            <div class="step" id="step-dermaga">
+                <div class="step-header">
+                    <img src="https://via.placeholder.com/50/007bff/ffffff?text=1" alt="Icon Dermaga" class="step-icon">
+                    <h3>1. Dermaga / Pendaratan</h3>
+                </div>
+                <div class="details">
+                    <h4>Tujuan Utama:</h4>
+                    <p>Penanganan awal cepat dan penurunan suhu segera.</p>
+                    <h4>Best Practices:</h4>
+                    <ul>
+                        <li>Hindari ikan kontak langsung dengan lantai/tanah.</li>
+                        <li>Sortir ikan berdasarkan jenis dan ukuran.</li>
+                        <li>Cuci ikan dengan air bersih dan dingin.</li>
+                        <li>Segera berikan es curah bersih (rasio es:ikan minimal 1:1 atau 1:2 tergantung kondisi).</li>
+                        <li>Gunakan wadah bersih dan higienis.</li>
+                        <li>Ukur suhu internal ikan secara berkala. Target < 4°C.</li>
+                    </ul>
+                    <h4>Risiko:</h4>
+                    <p>Pertumbuhan bakteri cepat, penurunan mutu sensori (bau, tekstur), kerusakan fisik.</p>
+                </div>
+            </div>
+
+            <div class="connector"></div>
+
+            <!-- Tahap 2: Transportasi ke Cold Storage -->
+            <div class="step" id="step-transport1">
+                 <div class="step-header">
+                    <img src="https://via.placeholder.com/50/28a745/ffffff?text=2" alt="Icon Transportasi 1" class="step-icon">
+                    <h3>2. Transportasi ke CS</h3>
+                 </div>
+                <div class="details">
+                    <h4>Tujuan Utama:</h4>
+                    <p>Mempertahankan suhu rendah selama perjalanan.</p>
+                    <h4>Best Practices:</h4>
+                    <ul>
+                        <li>Gunakan kendaraan berinsulasi atau berpendingin.</li>
+                        <li>Pastikan es cukup selama perjalanan (tambahkan jika perlu).</li>
+                        <li>Minimalisir waktu bongkar muat.</li>
+                        <li>Hindari paparan sinar matahari langsung.</li>
+                        <li>Jaga kebersihan kendaraan/wadah transport.</li>
+                    </ul>
+                     <h4>Risiko:</h4>
+                    <p>Kenaikan suhu produk, pencairan es berlebih, kontaminasi silang.</p>
+               </div>
+            </div>
+
+            <div class="connector"></div>
+
+            <!-- Tahap 3: Cold Storage -->
+            <div class="step" id="step-cs">
+                 <div class="step-header">
+                    <img src="https://via.placeholder.com/50/ffc107/000000?text=3" alt="Icon Cold Storage" class="step-icon">
+                    <h3>3. Cold Storage</h3>
+                 </div>
+                <div class="details">
+                    <h4>Tujuan Utama:</h4>
+                    <p>Menyimpan produk pada suhu stabil (beku/dingin) untuk menjaga kualitas.</p>
+                    <h4>Best Practices:</h4>
+                    <ul>
+                        <li>Periksa suhu produk saat diterima.</li>
+                        <li>Segera masukkan produk ke ruang penyimpanan sesuai suhu target (Beku: ≤ -18°C, Dingin: 0-4°C).</li>
+                        <li>Terapkan sistem FIFO (First-In, First-Out) atau FEFO (First-Expired, First-Out).</li>
+                        <li>Atur penumpukan produk agar sirkulasi udara lancar.</li>
+                        <li>Pantau dan catat suhu ruang penyimpanan secara rutin.</li>
+                        <li>Jaga kebersihan dan sanitasi area cold storage.</li>
+                    </ul>
+                     <h4>Risiko:</h4>
+                    <p>Fluktuasi suhu, freezer burn (produk beku), pertumbuhan mikroba (produk dingin), kerusakan kualitas.</p>
+                </div>
+            </div>
+
+            <div class="connector"></div>
+
+            <!-- Tahap 4: Pengolahan & Pengemasan -->
+             <div class="step" id="step-processing">
+                 <div class="step-header">
+                    <img src="https://via.placeholder.com/50/fd7e14/ffffff?text=4" alt="Icon Pengolahan" class="step-icon">
+                    <h3>4. Pengolahan & Kemas</h3>
+                 </div>
+                <div class="details">
+                    <h4>Tujuan Utama:</h4>
+                    <p>Memproses produk (jika perlu) dan mengemasnya dengan tetap menjaga suhu rendah.</p>
+                    <h4>Best Practices:</h4>
+                    <ul>
+                        <li>Lakukan proses di ruangan terkontrol suhunya (dingin).</li>
+                        <li>Jaga kebersihan alat dan area kerja (sanitasi).</li>
+                        <li>Minimalisir waktu produk berada di luar suhu dingin/beku.</li>
+                        <li>Gunakan bahan kemasan food-grade yang sesuai (misal: vakum untuk beku).</li>
+                        <li>Beri label yang jelas (nama produk, tanggal produksi/kedaluwarsa).</li>
+                        <li>Segera kembalikan produk ke suhu penyimpanan yang sesuai setelah dikemas.</li>
+                    </ul>
+                     <h4>Risiko:</h4>
+                    <p>Kontaminasi silang, kenaikan suhu produk, penurunan kualitas akibat penanganan.</p>
+                </div>
+            </div>
+
+             <div class="connector"></div>
+
+            <!-- Tahap 5: Distribusi ke Pelanggan -->
+            <div class="step" id="step-transport2">
+                 <div class="step-header">
+                    <img src="https://via.placeholder.com/50/17a2b8/ffffff?text=5" alt="Icon Transportasi 2" class="step-icon">
+                    <h3>5. Distribusi Akhir</h3>
+                 </div>
+                <div class="details">
+                    <h4>Tujuan Utama:</h4>
+                    <p>Mengirimkan produk ke pelanggan (ritel/konsumen) dengan menjaga rantai dingin.</p>
+                     <h4>Best Practices:</h4>
+                    <ul>
+                        <li>Gunakan kendaraan berpendingin (reefer truck/container) yang suhunya sesuai.</li>
+                        <li>Minimalisir waktu tunggu dan buka tutup pintu kendaraan.</li>
+                        <li>Pantau suhu selama perjalanan (jika memungkinkan).</li>
+                        <li>Pastikan serah terima produk cepat di titik tujuan.</li>
+                        <li>Berikan instruksi penanganan/penyimpanan kepada penerima jika perlu.</li>
+                    </ul>
+                    <h4>Risiko:</h4>
+                    <p>Putusnya rantai dingin, kerusakan produk akibat fluktuasi suhu, penurunan umur simpan.</p>
+                </div>
+            </div>
+
+             <div class="connector"></div>
+
+             <!-- Tahap 6: Pelanggan/Konsumen -->
+            <div class="step" id="step-customer">
+                 <div class="step-header">
+                    <img src="https://via.placeholder.com/50/6f42c1/ffffff?text=6" alt="Icon Pelanggan" class="step-icon">
+                    <h3>6. Pelanggan</h3>
+                 </div>
+                <div class="details">
+                    <h4>Tujuan Utama:</h4>
+                    <p>Penanganan yang benar oleh pelanggan untuk menjaga kualitas hingga dikonsumsi.</p>
+                     <h4>Tips untuk Pelanggan:</h4>
+                    <ul>
+                        <li>Segera simpan produk di lemari es (chiller/freezer) setelah dibeli.</li>
+                        <li>Perhatikan tanggal kedaluwarsa.</li>
+                        <li>Untuk produk beku, cairkan (thawing) di dalam chiller, bukan suhu ruang.</li>
+                        <li>Masak produk hingga matang sempurna.</li>
+                        <li>Jaga kebersihan saat menangani produk.</li>
+                    </ul>
+                    <h4>Risiko:</h4>
+                    <p>Keracunan makanan jika penanganan salah, penurunan kualitas jika penyimpanan tidak tepat.</p>
+                </div>
+            </div>
+
+        </div> <!-- Akhir #cold-chain-visualizer -->
+
+        <p class="note">Klik pada setiap tahap untuk melihat detail Best Practice.</p>
+
+    </div> <!-- Akhir #cold-chain-app -->
+
+    <script src="script.js"></script>
+</body>
+</html>
