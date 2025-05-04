@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visualisasi Best Practice Cold Chain Perikanan</title>
+    <!-- Link CDN Font Awesome (Gunakan versi terbaru jika tersedia) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -21,9 +23,9 @@
         <div id="cold-chain-visualizer" class="layout-horizontal">
 
             <!-- Tahap 1: Dermaga -->
-            <div class="step" id="step-dermaga">
+            <div class="step" data-step="dermaga">
                 <div class="step-header">
-                    <img src="https://via.placeholder.com/50/007bff/ffffff?text=1" alt="Icon Dermaga" class="step-icon">
+                     <i class="fas fa-ship fa-2x step-icon" aria-hidden="true"></i>
                     <h3>1. Dermaga / Pendaratan</h3>
                 </div>
                 <div class="details">
@@ -46,9 +48,9 @@
             <div class="connector"></div>
 
             <!-- Tahap 2: Transportasi ke Cold Storage -->
-            <div class="step" id="step-transport1">
+            <div class="step" data-step="transport1">
                  <div class="step-header">
-                    <img src="https://via.placeholder.com/50/28a745/ffffff?text=2" alt="Icon Transportasi 1" class="step-icon">
+                    <i class="fas fa-truck fa-2x step-icon" aria-hidden="true"></i>
                     <h3>2. Transportasi ke CS</h3>
                  </div>
                 <div class="details">
@@ -70,9 +72,9 @@
             <div class="connector"></div>
 
             <!-- Tahap 3: Cold Storage -->
-            <div class="step" id="step-cs">
+            <div class="step" data-step="cs">
                  <div class="step-header">
-                    <img src="https://via.placeholder.com/50/ffc107/000000?text=3" alt="Icon Cold Storage" class="step-icon">
+                    <i class="fas fa-warehouse fa-2x step-icon" aria-hidden="true"></i>
                     <h3>3. Cold Storage</h3>
                  </div>
                 <div class="details">
@@ -95,9 +97,9 @@
             <div class="connector"></div>
 
             <!-- Tahap 4: Pengolahan & Pengemasan -->
-             <div class="step" id="step-processing">
+             <div class="step" data-step="processing">
                  <div class="step-header">
-                    <img src="https://via.placeholder.com/50/fd7e14/ffffff?text=4" alt="Icon Pengolahan" class="step-icon">
+                    <i class="fas fa-industry fa-2x step-icon" aria-hidden="true"></i>
                     <h3>4. Pengolahan & Kemas</h3>
                  </div>
                 <div class="details">
@@ -120,9 +122,9 @@
              <div class="connector"></div>
 
             <!-- Tahap 5: Distribusi ke Pelanggan -->
-            <div class="step" id="step-transport2">
+            <div class="step" data-step="transport2">
                  <div class="step-header">
-                    <img src="https://via.placeholder.com/50/17a2b8/ffffff?text=5" alt="Icon Transportasi 2" class="step-icon">
+                    <i class="fas fa-truck-moving fa-2x step-icon" aria-hidden="true"></i>
                     <h3>5. Distribusi Akhir</h3>
                  </div>
                 <div class="details">
@@ -144,9 +146,9 @@
              <div class="connector"></div>
 
              <!-- Tahap 6: Pelanggan/Konsumen -->
-            <div class="step" id="step-customer">
+            <div class="step" data-step="customer">
                  <div class="step-header">
-                    <img src="https://via.placeholder.com/50/6f42c1/ffffff?text=6" alt="Icon Pelanggan" class="step-icon">
+                     <i class="fas fa-store fa-2x step-icon" aria-hidden="true"></i>
                     <h3>6. Pelanggan</h3>
                  </div>
                 <div class="details">
@@ -167,7 +169,11 @@
 
         </div> <!-- Akhir #cold-chain-visualizer -->
 
-        <p class="note">Klik pada setiap tahap untuk melihat detail Best Practice.</p>
+        <!-- Area untuk Menampilkan Detail -->
+        <div id="details-display-area" class="details-container">
+            <p class="placeholder-text">Klik salah satu tahap di atas untuk melihat detail best practice.</p>
+            <!-- Konten detail akan dimasukkan di sini oleh JavaScript -->
+        </div>
 
     </div> <!-- Akhir #cold-chain-app -->
 
