@@ -298,9 +298,9 @@ body {
 /* -- Layout Vertikal -- */
 #cold-chain-visualizer.layout-vertical {
     flex-direction: column;
-    align-items: center; /* Pusatkan secara horizontal */
+    align-items: center; /* <-- INI YANG MEMUSATKAN SECARA HORIZONTAL */
     overflow-x: hidden;
-    align-items: stretch; /* (BARU) Meskipun tidak terlalu efek di vertikal, konsisten saja */
+    /* HAPUS align-items: stretch; DARI SINI */
 }
 
 #cold-chain-visualizer.layout-vertical .step {
