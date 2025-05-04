@@ -1,0 +1,256 @@
+/* Reset dan Dasar */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+#cold-chain-app {
+    max-width: 1200px; /* Lebar maksimum */
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #0056b3;
+    margin-bottom: 30px;
+}
+
+/* Kontrol Layout */
+.controls {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 15px;
+    background-color: #e9ecef;
+    border-radius: 5px;
+}
+
+.controls p {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.controls button {
+    padding: 10px 15px;
+    margin: 0 5px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f9fa;
+    transition: background-color 0.2s ease;
+}
+
+.controls button:hover {
+    background-color: #e2e6ea;
+}
+
+.controls button.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #0056b3;
+}
+
+/* Kontainer Visualisasi */
+#cold-chain-visualizer {
+    display: flex; /* Defaultnya akan diatur oleh JS, tapi flex adalah basisnya */
+    align-items: flex-start; /* Rata atas untuk tinggi berbeda */
+    overflow-x: auto; /* Scroll jika horizontal terlalu lebar */
+    padding-bottom: 20px; /* Ruang untuk scrollbar jika muncul */
+}
+
+/* Style untuk Setiap Tahap */
+.step {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 15px;
+    margin: 10px; /* Jarak antar step */
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    min-width: 150px; /* Lebar minimum step */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.step:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.step-header {
+    display: flex;
+    flex-direction: column; /* Icon di atas teks */
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.step-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Membuat icon bulat */
+    margin-bottom: 8px;
+    object-fit: cover; /* Jaga rasio aspek icon */
+}
+
+.step h3 {
+    font-size: 1em;
+    color: #333;
+    margin-bottom: 0; /* Hapus margin bawah default */
+}
+
+/* Detail Best Practice (Hidden by Default) */
+.details {
+    display: none; /* Sembunyikan secara default */
+    text-align: left;
+    margin-top: 15px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-top: 1px dashed #ccc;
+    border-radius: 0 0 5px 5px; /* Bulat di bawah */
+}
+
+.details h4 {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color: #0056b3;
+}
+.details h4:first-child {
+    margin-top: 0;
+}
+
+.details ul {
+    list-style-position: inside;
+    padding-left: 0;
+}
+.details ul li {
+    margin-bottom: 5px;
+    font-size: 0.9em;
+}
+
+.details p {
+    font-size: 0.9em;
+    margin-bottom: 10px;
+}
+
+/* Konektor antar Step */
+.connector {
+    align-self: center; /* Posisikan di tengah vertikal antar step */
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #aaa;
+}
+
+/* -- Layout Horizontal -- */
+#cold-chain-visualizer.layout-horizontal {
+    flex-direction: row;
+}
+
+#cold-chain-visualizer.layout-horizontal .step {
+    flex: 1; /* Agar semua step coba mengisi ruang, bisa disesuaikan */
+     /* max-width: 200px; */ /* Batasi lebar max jika perlu */
+}
+
+#cold-chain-visualizer.layout-horizontal .connector {
+     margin: 0 15px; /* Jarak horizontal konektor */
+     /* Panah Kanan (atau bisa pakai gambar/SVG) */
+     content: "➔"; /* Ini mungkin tidak tampil, set di CSS */
+     display: inline-block; /* Agar bisa diberi margin */
+}
+/* Cara lebih baik untuk panah kanan di CSS */
+#cold-chain-visualizer.layout-horizontal .connector::before {
+    content: "➔";
+}
+
+
+/* -- Layout Vertikal -- */
+#cold-chain-visualizer.layout-vertical {
+    flex-direction: column;
+    align-items: center; /* Pusatkan step secara horizontal */
+    overflow-x: hidden; /* Tidak perlu scroll horizontal */
+}
+
+#cold-chain-visualizer.layout-vertical .step {
+    width: 80%; /* Lebar step di mode vertikal */
+    max-width: 500px; /* Batas lebar maksimum */
+    margin: 15px 0; /* Jarak atas bawah */
+    flex: none; /* Hapus flex grow/shrink */
+}
+
+#cold-chain-visualizer.layout-vertical .connector {
+    margin: 5px 0; /* Jarak vertikal konektor */
+    transform: rotate(90deg); /* Putar panah */
+    display: block; /* Agar bisa diberi margin atas/bawah */
+}
+/* Cara lebih baik untuk panah bawah di CSS */
+#cold-chain-visualizer.layout-vertical .connector::before {
+    content: "➔"; /* Tetap pakai panah kanan, tapi diputar CSS */
+}
+/* Sembunyikan konektor terakhir */
+#cold-chain-visualizer .step:last-child + .connector {
+    display: none;
+}
+
+
+/* Catatan di Bawah */
+.note {
+    text-align: center;
+    margin-top: 20px;
+    font-style: italic;
+    color: #666;
+    font-size: 0.9em;
+}
+
+/* Responsiveness Sederhana */
+@media (max-width: 768px) {
+     #cold-chain-visualizer {
+        /* Bisa dipaksa jadi vertikal di layar kecil jika diinginkan */
+        /* flex-direction: column; */
+        /* align-items: center; */
+    }
+     #cold-chain-visualizer.layout-horizontal {
+         /* Biarkan default flex wrap bekerja atau atur ulang */
+         flex-wrap: wrap; /* Biarkan step pindah baris jika tidak muat */
+         justify-content: center;
+    }
+     #cold-chain-visualizer.layout-horizontal .step {
+         flex-basis: 45%; /* Coba 2 kolom di layar sedang */
+         min-width: 150px;
+    }
+     #cold-chain-visualizer.layout-vertical .step {
+        width: 95%; /* Lebih lebar di layar kecil */
+    }
+    .controls button {
+        font-size: 0.9em;
+        padding: 8px 10px;
+    }
+    h1 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 480px) {
+    #cold-chain-visualizer.layout-horizontal .step {
+         flex-basis: 90%; /* 1 kolom di layar sangat kecil */
+    }
+     .controls {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+     }
+     .controls button {
+         width: 80%;
+         margin: 5px 0;
+     }
+}
