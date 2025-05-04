@@ -8,7 +8,7 @@
 }
 
 html {
-    scroll-behavior: smooth; /* Efek scroll halus */
+    scroll-behavior: smooth;
 }
 
 body {
@@ -17,33 +17,41 @@ body {
     color: #333;
     background-color: #f8f9fa;
     padding: 20px;
-    padding-top: 80px; /* Beri ruang untuk header/menu floating jika fixed */
+    /* Beri ruang yang cukup untuk header sticky */
+    padding-top: 100px; /* Sesuaikan nilai ini berdasarkan tinggi header aktual */
 }
 
-#cold-chain-app {
-    max-width: 1200px;
-    margin: 0 auto; /* Hapus margin atas karena body sudah ada padding */
-    background-color: #ffffff;
-    padding: 30px 40px;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    overflow: hidden;
-}
-
-h1 {
+/* =================================
+   Header Sticky (BARU)
+   ================================= */
+#main-header {
+    position: fixed; /* Atau sticky, fixed lebih pasti selalu di atas */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.95); /* Latar putih semi-transparan */
+    backdrop-filter: blur(8px); /* Efek blur (opsional, cek kompatibilitas browser) */
+    -webkit-backdrop-filter: blur(8px); /* Untuk Safari */
+    padding: 15px 40px; /* Padding header */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Shadow halus */
+    z-index: 950; /* Di bawah menu floating, tapi di atas konten */
     text-align: center;
-    color: #0d6efd;
-    margin-bottom: 35px;
-    font-weight: 600;
-    font-size: 1.8em; /* Sedikit lebih besar */
 }
+
+#main-header h1 {
+    color: #0d6efd;
+    font-weight: 600;
+    font-size: 1.8em;
+    margin: 0; /* Hapus margin default h1 */
+}
+
 
 /* =================================
    Menu Floating & Orientasi
    ================================= */
 #floating-menu-button {
     position: fixed;
-    top: 20px;
+    top: 20px; /* Sesuaikan jika perlu agar tidak terlalu dekat header */
     right: 20px;
     width: 50px;
     height: 50px;
@@ -57,7 +65,7 @@ h1 {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    z-index: 1000;
+    z-index: 1000; /* Paling atas */
     transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
@@ -68,15 +76,15 @@ h1 {
 
 #orientation-menu {
     position: fixed;
-    top: 80px;
+    top: 80px; /* Di bawah tombol hamburger */
     right: 20px;
     background-color: white;
     border-radius: 6px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
     padding: 15px;
-    z-index: 999;
-    display: none; /* Default tersembunyi */
-    min-width: 180px; /* Sedikit lebih lebar */
+    z-index: 999; /* Di bawah tombol, tapi di atas header jika header sticky */
+    display: none;
+    min-width: 180px;
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px);
@@ -124,17 +132,34 @@ h1 {
 
 #orientation-menu .menu-option i {
     margin-right: 10px;
-    width: 18px; /* Sesuaikan agar ikon align */
+    width: 18px;
     text-align: center;
     color: #0d6efd;
 }
+
+/* =================================
+   Kontainer Aplikasi Utama
+   ================================= */
+#cold-chain-app {
+    max-width: 1200px;
+    margin: 0 auto; /* Pusatkan konten utama */
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 8px;
+    /* Hapus shadow jika header sudah punya shadow */
+    /* box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); */
+    border: 1px solid #dee2e6; /* Tambah border tipis sebagai ganti shadow */
+    overflow: hidden;
+}
+
 
 /* =================================
    Kontainer Visualisasi Utama
    ================================= */
 #cold-chain-visualizer {
     display: flex;
-    align-items: flex-start;
+    /* align-items: flex-start; */ /* Ganti ke stretch untuk tinggi sama */
+    align-items: stretch; /* (BARU) Membuat semua step sama tinggi */
     padding-bottom: 20px;
     margin-bottom: 20px;
     position: relative;
@@ -152,8 +177,10 @@ h1 {
     text-align: center;
     cursor: default;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    position: relative; /* Untuk indikator IT */
+    position: relative;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    display: flex; /* (BARU) Gunakan flex di dalam step */
+    flex-direction: column; /* (BARU) Agar konten tersusun vertikal */
 }
 
 .step-header {
@@ -165,6 +192,8 @@ h1 {
     border-radius: 5px;
     transition: background-color 0.2s ease;
     cursor: pointer;
+    /* (BARU) Biarkan header mengambil ruang seperlunya */
+    flex-shrink: 0;
 }
 
 .step-header:hover {
@@ -174,7 +203,7 @@ h1 {
 /* Style Ikon Font Awesome */
 .step-icon {
     margin-bottom: 12px;
-    color: #0d6efd; /* Warna ikon default */
+    color: #0d6efd;
     line-height: 1;
 }
 /* Warna Ikon Berbeda (Contoh) */
@@ -213,13 +242,13 @@ h1 {
     right: 8px;
     font-size: 0.8em;
     color: #6c757d;
-    background-color: rgba(233, 236, 239, 0.8); /* Background sedikit solid */
+    background-color: rgba(233, 236, 239, 0.8);
     padding: 3px 6px;
     border-radius: 4px;
     line-height: 1;
     z-index: 10;
     cursor: help;
-    border: 1px solid #dee2e6; /* Border halus */
+    border: 1px solid #dee2e6;
 }
 
 .it-indicator i {
@@ -231,7 +260,7 @@ h1 {
    Konektor Antar Step
    ================================= */
 .connector {
-    align-self: center;
+    align-self: center; /* Tetap di tengah secara vertikal */
     font-size: 1.8em;
     font-weight: bold;
     color: #adb5bd;
@@ -248,12 +277,14 @@ h1 {
     justify-content: space-between;
     overflow-x: auto;
     overflow-y: hidden;
+    align-items: stretch; /* Pastikan ini ada untuk tinggi seragam */
 }
 
 #cold-chain-visualizer.layout-horizontal .step {
-    flex: 0 1 160px;
+    flex: 0 1 160px; /* Lebar basis */
     min-width: 140px;
     margin: 10px 5px;
+    /* Tinggi akan diatur oleh align-items: stretch */
 }
 
 #cold-chain-visualizer.layout-horizontal .connector {
@@ -267,15 +298,16 @@ h1 {
 /* -- Layout Vertikal -- */
 #cold-chain-visualizer.layout-vertical {
     flex-direction: column;
-    align-items: center;
+    align-items: center; /* Pusatkan secara horizontal */
     overflow-x: hidden;
+    align-items: stretch; /* (BARU) Meskipun tidak terlalu efek di vertikal, konsisten saja */
 }
 
 #cold-chain-visualizer.layout-vertical .step {
     width: 85%;
     max-width: 550px;
     margin: 15px 0;
-    flex: none;
+    flex: none; /* Hapus flex item di vertikal */
 }
 
 #cold-chain-visualizer.layout-vertical .connector {
@@ -302,7 +334,7 @@ h1 {
     background-color: #f8f9fa;
     border: 1px solid #dee2e6;
     border-radius: 8px;
-    display: none; /* Sembunyi default */
+    display: none;
     transition: opacity 0.3s ease, transform 0.3s ease;
     opacity: 0;
     transform: translateY(10px);
@@ -340,12 +372,12 @@ h1 {
     padding-bottom: 6px;
     font-size: 1.1em;
 }
-#details-display-area h4:first-of-type {
-    margin-top: 0; /* Hapus margin atas untuk H4 pertama di konten */
+#details-display-area .dynamic-content h4:first-of-type { /* Target H4 pertama di konten dinamis */
+    margin-top: 0;
 }
 
 #details-display-area ul {
-    list-style-type: none; /* Hapus bullet default */
+    list-style-type: none;
     padding-left: 5px;
     margin-bottom: 15px;
 }
@@ -357,7 +389,7 @@ h1 {
     padding-left: 20px;
 }
 /* Custom Bullet Umum */
-#details-display-area ul:not(.it-list) li::before { /* Target list biasa */
+#details-display-area ul:not(.it-list) li::before {
     content: "✓";
     color: #198754;
     position: absolute;
@@ -382,15 +414,11 @@ h1 {
     font-size: 1.05em;
 }
 
-#details-display-area h4.it-detail-header + ul {
+#details-display-area ul.it-list { /* Gunakan kelas eksplisit */
     list-style-type: none;
     padding-left: 5px;
 }
-/* Tandai list IT agar beda bullet */
-#details-display-area h4.it-detail-header + ul {
-    /* Kelas .it-list bisa ditambahkan via JS jika perlu, atau target seperti ini */
-}
-#details-display-area h4.it-detail-header + ul li {
+#details-display-area ul.it-list li {
      margin-bottom: 8px;
      font-size: 0.9em;
      line-height: 1.5;
@@ -398,7 +426,7 @@ h1 {
      padding-left: 22px;
 }
 /* Custom bullet untuk list IT */
-#details-display-area h4.it-detail-header + ul li::before {
+#details-display-area ul.it-list li::before {
     content: "\f0da"; /* Panah kanan FA */
     font-family: "Font Awesome 6 Free";
     font-weight: 900;
@@ -408,9 +436,22 @@ h1 {
     top: 2px;
     font-size: 0.9em;
 }
-#details-display-area h4.it-detail-header + ul li b {
+#details-display-area ul.it-list li b {
     font-weight: 600;
     color: #343a40;
+}
+
+
+/* =================================
+   Footer (BARU)
+   ================================= */
+footer {
+    text-align: center;
+    margin-top: 50px; /* Jarak dari konten utama */
+    padding: 25px 20px;
+    font-size: 0.9em;
+    color: #6c757d;
+    border-top: 1px solid #e0e0e0; /* Garis pemisah */
 }
 
 
@@ -420,16 +461,17 @@ h1 {
 
 /* Layar Sedang (Tablet) */
 @media (max-width: 992px) {
-    #cold-chain-app {
-        padding: 25px 30px;
-    }
+    body { padding-top: 90px; } /* Sesuaikan padding */
+    #main-header { padding: 12px 30px; }
+    #main-header h1 { font-size: 1.6em; }
+    #cold-chain-app { padding: 25px 30px; }
 }
 
 /* Layar Kecil (Tablet Kecil / HP Besar) */
 @media (max-width: 768px) {
-    body { padding: 10px; padding-top: 70px; } /* Sesuaikan padding top */
-    #cold-chain-app { padding: 20px; }
-    h1 { font-size: 1.6em; margin-bottom: 25px; }
+    body { padding: 10px; padding-top: 80px; } /* Sesuaikan padding lagi */
+    #main-header { padding: 10px 20px; }
+    #main-header h1 { font-size: 1.4em; }
 
     #floating-menu-button {
         width: 45px;
@@ -439,17 +481,20 @@ h1 {
         right: 15px;
     }
     #orientation-menu {
-        top: 70px;
+        top: 70px; /* Jarak dari atas setelah header */
         right: 15px;
         padding: 12px;
         min-width: 160px;
     }
+
+     #cold-chain-app { padding: 20px; }
 
     #cold-chain-visualizer.layout-horizontal {
         flex-wrap: wrap;
         justify-content: center;
         overflow-x: hidden;
         padding-bottom: 0;
+        /* align-items: stretch tetap berlaku */
     }
     #cold-chain-visualizer.layout-horizontal .step {
         flex-basis: calc(50% - 20px);
@@ -470,14 +515,16 @@ h1 {
     }
     #details-display-area h4 { font-size: 1em; }
     #details-display-area ul li, #details-display-area p { font-size: 0.9em; }
-    #details-display-area h4.it-detail-header + ul li { font-size: 0.85em; }
+    #details-display-area ul.it-list li { font-size: 0.85em; }
+
+    footer { margin-top: 40px; padding: 20px; }
 }
 
 /* Layar Sangat Kecil (HP) */
 @media (max-width: 480px) {
-     body { padding: 10px; padding-top: 65px; }
-    #cold-chain-app { padding: 15px; }
-    h1 { font-size: 1.4em; }
+     body { padding: 10px; padding-top: 70px; } /* Sesuaikan */
+     #main-header { padding: 8px 15px; }
+     #main-header h1 { font-size: 1.2em; }
 
     #floating-menu-button {
         width: 40px;
@@ -494,13 +541,16 @@ h1 {
      #orientation-menu .menu-option { font-size: 0.9em; padding: 8px 12px;}
      #orientation-menu p { font-size: 0.85em;}
 
+     #cold-chain-app { padding: 15px; }
 
     #cold-chain-visualizer.layout-horizontal .step {
         flex-basis: calc(100% - 20px); /* Paksa 1 kolom */
     }
     #cold-chain-visualizer.layout-vertical .step {
-        width: 95%; /* Hampir penuh */
+        width: 95%;
     }
      #details-display-area { padding: 15px; }
      #details-display-area h4.it-detail-header { font-size: 1em;}
+
+     footer { font-size: 0.8em;}
 }
