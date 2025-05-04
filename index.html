@@ -3,27 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visualisasi Best Practice Cold Chain Perikanan</title>
-    <!-- Link CDN Font Awesome (Gunakan versi terbaru jika tersedia) -->
+    <title>Visualisasi Best Practice Cold Chain Perikanan (IT Integrated)</title>
+    <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div id="cold-chain-app">
-        <h1>Visualisasi Best Practice Cold Chain Perikanan</h1>
+    <!-- Tombol Menu Floating -->
+    <button id="floating-menu-button" aria-label="Pilih Orientasi Tampilan">
+        <i class="fas fa-bars"></i>
+    </button>
 
-        <div class="controls">
-            <p>Pilih Orientasi Tampilan:</p>
-            <button id="btn-horizontal" class="active">Horizontal (Kiri ke Kanan)</button>
-            <button id="btn-vertical">Vertikal (Atas ke Bawah)</button>
-        </div>
+    <!-- Menu Orientasi (Hidden by default) -->
+    <div id="orientation-menu">
+        <p>Orientasi:</p>
+        <button class="menu-option" data-layout="horizontal">
+             <i class="fas fa-arrows-left-right"></i> Horizontal
+        </button>
+        <button class="menu-option" data-layout="vertical">
+             <i class="fas fa-arrows-up-down"></i> Vertikal
+         </button>
+    </div>
+
+
+    <div id="cold-chain-app">
+        <h1>Visualisasi Best Practice Cold Chain Perikanan (IT Integrated)</h1>
+
+        <!-- HAPUS .controls DIV YANG LAMA -->
+        <!-- <div class="controls">...</div> -->
 
         <!-- Kontainer Utama untuk Visualisasi -->
         <div id="cold-chain-visualizer" class="layout-horizontal">
 
             <!-- Tahap 1: Dermaga -->
             <div class="step" data-step="dermaga">
+                <span class="it-indicator" title="Melibatkan Sistem IT"><i class="fas fa-laptop-code"></i></span>
                 <div class="step-header">
                      <i class="fas fa-ship fa-2x step-icon" aria-hidden="true"></i>
                     <h3>1. Dermaga / Pendaratan</h3>
@@ -42,6 +57,13 @@
                     </ul>
                     <h4>Risiko:</h4>
                     <p>Pertumbuhan bakteri cepat, penurunan mutu sensori (bau, tekstur), kerusakan fisik.</p>
+                    <h4 class="it-detail-header">Integrasi Sistem IT:</h4>
+                    <ul>
+                        <li><b>Pencatatan Data Awal:</b> Input data tangkapan (jenis, berat, kapal asal, waktu pendaratan) ke sistem.</li>
+                        <li><b>Tagging/Pelabelan Awal:</b> Pemberian label barcode/QR Code/RFID pada wadah/batch untuk traceability.</li>
+                        <li><b>Pencatatan Suhu Awal:</b> Input manual atau otomatis (via sensor) suhu produk saat diterima.</li>
+                        <li><b>Quality Check Input:</b> Pencatatan hasil pemeriksaan mutu awal.</li>
+                    </ul>
                 </div>
             </div>
 
@@ -49,6 +71,7 @@
 
             <!-- Tahap 2: Transportasi ke Cold Storage -->
             <div class="step" data-step="transport1">
+                 <span class="it-indicator" title="Melibatkan Sistem IT"><i class="fas fa-satellite-dish"></i></span>
                  <div class="step-header">
                     <i class="fas fa-truck fa-2x step-icon" aria-hidden="true"></i>
                     <h3>2. Transportasi ke CS</h3>
@@ -66,6 +89,13 @@
                     </ul>
                      <h4>Risiko:</h4>
                     <p>Kenaikan suhu produk, pencairan es berlebih, kontaminasi silang.</p>
+                    <h4 class="it-detail-header">Integrasi Sistem IT:</h4>
+                    <ul>
+                        <li><b>Monitoring Suhu Real-time:</b> Sensor suhu IoT di kendaraan mengirim data ke dashboard.</li>
+                        <li><b>GPS Tracking:</b> Pemantauan lokasi dan rute kendaraan.</li>
+                        <li><b>Sistem Dispatch:</b> Koordinasi jadwal dan penugasan kendaraan.</li>
+                        <li><b>Alert System:</b> Notifikasi jika suhu keluar batas aman atau ada deviasi rute.</li>
+                    </ul>
                </div>
             </div>
 
@@ -73,6 +103,7 @@
 
             <!-- Tahap 3: Cold Storage -->
             <div class="step" data-step="cs">
+                 <span class="it-indicator" title="Melibatkan Sistem IT"><i class="fas fa-database"></i></span>
                  <div class="step-header">
                     <i class="fas fa-warehouse fa-2x step-icon" aria-hidden="true"></i>
                     <h3>3. Cold Storage</h3>
@@ -91,6 +122,15 @@
                     </ul>
                      <h4>Risiko:</h4>
                     <p>Fluktuasi suhu, freezer burn (produk beku), pertumbuhan mikroba (produk dingin), kerusakan kualitas.</p>
+                    <h4 class="it-detail-header">Integrasi Sistem IT:</h4>
+                    <ul>
+                        <li><b>Warehouse Management System (WMS):</b> Manajemen inventaris, lokasi penyimpanan, status stok.</li>
+                        <li><b>Pencatatan Penerimaan & Pengiriman:</b> Scan barcode/RFID saat barang masuk/keluar.</li>
+                        <li><b>Monitoring Suhu Otomatis:</b> Sensor di ruang penyimpanan mencatat suhu secara kontinyu.</li>
+                        <li><b>Manajemen Kapasitas:</b> Sistem melacak utilisasi ruang penyimpanan.</li>
+                        <li><b>Enforcement FIFO/FEFO:</b> Sistem mengarahkan pengambilan barang berdasarkan urutan masuk/kedaluwarsa.</li>
+                        <li><b>Reporting & Analytics:</b> Laporan stok, suhu historis, perputaran barang.</li>
+                    </ul>
                 </div>
             </div>
 
@@ -98,6 +138,7 @@
 
             <!-- Tahap 4: Pengolahan & Pengemasan -->
              <div class="step" data-step="processing">
+                 <span class="it-indicator" title="Melibatkan Sistem IT"><i class="fas fa-cogs"></i></span>
                  <div class="step-header">
                     <i class="fas fa-industry fa-2x step-icon" aria-hidden="true"></i>
                     <h3>4. Pengolahan & Kemas</h3>
@@ -116,6 +157,14 @@
                     </ul>
                      <h4>Risiko:</h4>
                     <p>Kontaminasi silang, kenaikan suhu produk, penurunan kualitas akibat penanganan.</p>
+                    <h4 class="it-detail-header">Integrasi Sistem IT:</h4>
+                    <ul>
+                        <li><b>Production Order Management:</b> Pelacakan status perintah kerja pengolahan.</li>
+                        <li><b>Traceability Linking:</b> Menghubungkan batch bahan baku ke batch produk jadi.</li>
+                        <li><b>Pencatatan Yield:</b> Sistem mencatat hasil (yield) dari proses pengolahan.</li>
+                        <li><b>Integrasi Labeling:</b> Sistem mengirim data (tanggal, batch) ke printer label otomatis.</li>
+                        <li><b>Quality Control Records:</b> Input hasil pemeriksaan kualitas selama dan setelah proses.</li>
+                    </ul>
                 </div>
             </div>
 
@@ -123,6 +172,7 @@
 
             <!-- Tahap 5: Distribusi ke Pelanggan -->
             <div class="step" data-step="transport2">
+                 <span class="it-indicator" title="Melibatkan Sistem IT"><i class="fas fa-route"></i></span>
                  <div class="step-header">
                     <i class="fas fa-truck-moving fa-2x step-icon" aria-hidden="true"></i>
                     <h3>5. Distribusi Akhir</h3>
@@ -140,13 +190,22 @@
                     </ul>
                     <h4>Risiko:</h4>
                     <p>Putusnya rantai dingin, kerusakan produk akibat fluktuasi suhu, penurunan umur simpan.</p>
+                    <h4 class="it-detail-header">Integrasi Sistem IT:</h4>
+                    <ul>
+                        <li><b>Transportation Management System (TMS):</b> Perencanaan rute, optimasi muatan.</li>
+                        <li><b>Order Management Link:</b> Menghubungkan pengiriman dengan pesanan pelanggan.</li>
+                        <li><b>Real-time Temperature Monitoring:</b> Sensor IoT di truk pengiriman.</li>
+                        <li><b>Electronic Proof of Delivery (ePOD):</b> Konfirmasi penerimaan barang secara digital (tanda tangan, foto).</li>
+                        <li><b>Customer Notifications:</b> Informasi status pengiriman ke pelanggan.</li>
+                    </ul>
                 </div>
             </div>
 
              <div class="connector"></div>
 
-             <!-- Tahap 6: Pelanggan/Konsumen -->
+             <!-- Tahap 6: Pelanggan/Konsumen (Biasanya tanpa IT Perusahaan, tapi ada potensi)-->
             <div class="step" data-step="customer">
+                 <!-- Indikator IT mungkin tidak relevan di sini dari sisi perusahaan -->
                  <div class="step-header">
                      <i class="fas fa-store fa-2x step-icon" aria-hidden="true"></i>
                     <h3>6. Pelanggan</h3>
@@ -164,6 +223,12 @@
                     </ul>
                     <h4>Risiko:</h4>
                     <p>Keracunan makanan jika penanganan salah, penurunan kualitas jika penyimpanan tidak tepat.</p>
+                    <!-- Opsi Detail IT: bisa terkait info produk via QR Code -->
+                     <h4 class="it-detail-header">Potensi Integrasi IT (Konsumen):</h4>
+                    <ul>
+                        <li><b>QR Code pada Kemasan:</b> Scan untuk melihat info detail produk, tanggal tangkap/produksi, tips penyimpanan/memasak, traceability (jika disediakan).</li>
+                        <li><b>Aplikasi Konsumen:</b> Reminder kedaluwarsa, resep, dll.</li>
+                    </ul>
                 </div>
             </div>
 
